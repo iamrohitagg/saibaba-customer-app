@@ -1,0 +1,115 @@
+import './src/i18n';
+import React from 'react';
+import { StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
+import { View, Text } from 'react-native';
+
+import { store, persistor } from './src/store';
+import { SplashScreen } from './src/screens/SplashScreen';
+import { LoginScreen } from './src/screens/LoginScreen';
+import { OtpScreen } from './src/screens/OtpScreen';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { RidesScreen } from './src/screens/RidesScreen';
+import { RideDetailsScreen } from './src/screens/RideDetailsScreen';
+import { RentalPackageScreen } from './src/screens/RentalPackageScreen';
+import { ProfileSetupScreen } from './src/screens/ProfileSetupScreen';
+import { ProfileScreen } from './src/screens/ProfileScreen';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const RidesStackNav = createNativeStackNavigator();
+const HomeStackNav = createNativeStackNavigator();
+
+const DummyScreen = () => (
+  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Text>Coming Soon</Text>
+  </View>
+);
+
+function RidesStack() {
+  return (
+    <RidesStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <RidesStackNav.Screen name="RidesList" component={RidesScreen} />
+      <RidesStackNav.Screen name="RideDetails" component={RideDetailsScreen} />
+    </RidesStackNav.Navigator>
+  );
+}
+
+function HomeStack() {
+  return (
+    <HomeStackNav.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStackNav.Screen name="HomeMain" component={HomeScreen} />
+      <HomeStackNav.Screen name="RentalPackage" component={RentalPackageScreen} />
+    </HomeStackNav.Navigator>
+  );
+}
+
+function MainTabs() {
+  const { t } = useTranslation();
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ color }) => {
+          let icon = '';
+          if (route.name === 'HomeTab') icon = '🏠';
+          else if (route.name === 'TripsTab') icon = '🚙';
+          else if (route.name === 'OffersTab') icon = '🎯';
+          else if (route.name === 'ProfileTab') icon = '👤';
+          return <Text style={{ fontSize: 20, color }}>{icon}</Text>;
+        },
+        tabBarActiveTintColor: '#0F2B5B',
+        tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          paddingBottom: 5,
+          paddingTop: 5,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+        }
+      })}
+    >
+      <Tab.Screen name="HomeTab" component={HomeStack} options={{ tabBarLabel: t('tab_home') }} />
+      <Tab.Screen name="TripsTab" component={RidesStack} options={{ tabBarLabel: t('tab_rides') }} />
+      <Tab.Screen name="OffersTab" component={DummyScreen} options={{ tabBarLabel: t('tab_anchor') }} />
+      <Tab.Screen name="ProfileTab" component={ProfileScreen} options={{ tabBarLabel: t('tab_profile') }} />
+    </Tab.Navigator>
+  );
+}
+
+function App(): React.JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+            <Stack.Navigator
+              initialRouteName="Splash"
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="Splash" component={SplashScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Otp" component={OtpScreen} />
+              <Stack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
+              <Stack.Screen name="MainTabs" component={MainTabs} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
+  );
+}
+
+export default App;
