@@ -4,8 +4,8 @@ import {
   Text, 
   TouchableOpacity, 
   Image, 
-  SafeAreaView 
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import { useHomeScreen } from './useHomeScreen';
 import { styles } from './styles';
@@ -28,8 +28,8 @@ export function HomeScreen({ navigation }: any) {
         </View>
         <View style={styles.avatarContainer}>
           <Image 
-            source={{ uri: 'https://img.icons8.com/color/96/user-male-circle--v1.png' }}
-            style={styles.avatarImage}
+            source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/user.png' }}
+            style={[styles.avatarImage, { tintColor: '#1D5B9E' }]}
           />
         </View>
       </LinearGradient>
@@ -47,7 +47,7 @@ export function HomeScreen({ navigation }: any) {
           <View style={styles.markerRings}>
             <View style={styles.markerRingInner} />
           </View>
-          <Text style={styles.markerIcon}>📍</Text>
+          <Image source={{uri: 'https://img.icons8.com/ios-filled/50/ef4444/marker.png'}} style={{width: 35, height: 35, tintColor: '#ef4444'}} />
         </View>
       </View>
 
@@ -69,7 +69,7 @@ export function HomeScreen({ navigation }: any) {
           onPress={() => setSelectedRide('book_now')}
         >
           <View style={styles.cardIconContainer}>
-            <Image source={{ uri: 'https://img.icons8.com/color/96/car--v1.png' }} style={styles.cardIcon} resizeMode="contain" />
+            <Image source={{ uri: 'https://img.icons8.com/ios-filled/96/1E293B/car.png' }} style={[styles.cardIcon, { tintColor: '#1E293B' }]} resizeMode="contain" />
           </View>
           <View style={styles.cardTextContainer}>
             <Text style={styles.cardTitle}>{t('book_now_title')}</Text>
@@ -89,7 +89,7 @@ export function HomeScreen({ navigation }: any) {
           onPress={() => setSelectedRide('schedule_later')}
         >
           <View style={styles.cardIconContainer}>
-            <Image source={{ uri: 'https://img.icons8.com/color/96/sedan.png' }} style={styles.cardIcon} resizeMode="contain" />
+            <Image source={{ uri: 'https://img.icons8.com/ios-filled/96/1E293B/sedan.png' }} style={[styles.cardIcon, { tintColor: '#1E293B' }]} resizeMode="contain" />
           </View>
           <View style={styles.cardTextContainer}>
             <Text style={styles.cardTitle}>{t('schedule_later_title')}</Text>
@@ -109,7 +109,7 @@ export function HomeScreen({ navigation }: any) {
           onPress={() => setSelectedRide('rental')}
         >
           <View style={styles.cardIconContainer}>
-            <Image source={{ uri: 'https://img.icons8.com/color/96/suv.png' }} style={styles.cardIcon} resizeMode="contain" />
+            <Image source={{ uri: 'https://img.icons8.com/ios-filled/96/1E293B/suv.png' }} style={[styles.cardIcon, { tintColor: '#1E293B' }]} resizeMode="contain" />
           </View>
           <View style={styles.cardTextContainer}>
             <Text style={styles.cardTitle}>{t('rental_title')}</Text>

@@ -34,8 +34,8 @@ export function RentalPackageScreen() {
         </View>
         <View style={styles.avatarContainer}>
           <Image 
-            source={{ uri: 'https://img.icons8.com/color/96/user-male-circle--v1.png' }}
-            style={styles.avatarImage}
+            source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/user.png' }}
+            style={[styles.avatarImage, { tintColor: '#1D5B9E' }]}
             resizeMode="cover"
           />
         </View>
@@ -58,8 +58,8 @@ export function RentalPackageScreen() {
               {isSelected && (
                 <View style={styles.checkmarkContainer}>
                   <Image 
-                    source={{ uri: 'https://img.icons8.com/color/96/ok--v1.png' }} 
-                    style={styles.checkmark} 
+                    source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/checkmark.png' }} 
+                    style={[styles.checkmark, { tintColor: '#1D5B9E' }]} 
                   />
                 </View>
               )}

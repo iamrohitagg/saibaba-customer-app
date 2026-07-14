@@ -1,7 +1,7 @@
 import './src/i18n';
 import React from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
@@ -20,6 +20,8 @@ import { RideDetailsScreen } from './src/screens/RideDetailsScreen';
 import { RentalPackageScreen } from './src/screens/RentalPackageScreen';
 import { ProfileSetupScreen } from './src/screens/ProfileSetupScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
+import { PassengerDetailsScreen } from './src/screens/PassengerDetailsScreen';
+import { VehicleSelectionScreen } from './src/screens/VehicleSelectionScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,12 +48,16 @@ function HomeStack() {
     <HomeStackNav.Navigator screenOptions={{ headerShown: false }}>
       <HomeStackNav.Screen name="HomeMain" component={HomeScreen} />
       <HomeStackNav.Screen name="RentalPackage" component={RentalPackageScreen} />
+      <HomeStackNav.Screen name="PassengerDetails" component={PassengerDetailsScreen} />
+      <HomeStackNav.Screen name="VehicleSelection" component={VehicleSelectionScreen} />
     </HomeStackNav.Navigator>
   );
 }
 
 function MainTabs() {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -67,9 +73,9 @@ function MainTabs() {
         tabBarActiveTintColor: '#0F2B5B',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          paddingBottom: 5,
+          paddingBottom: Math.max(insets.bottom, 5),
           paddingTop: 5,
-          height: 60,
+          height: 60 + Math.max(insets.bottom - 5, 0),
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -78,7 +84,7 @@ function MainTabs() {
     >
       <Tab.Screen name="HomeTab" component={HomeStack} options={{ tabBarLabel: t('tab_home') }} />
       <Tab.Screen name="TripsTab" component={RidesStack} options={{ tabBarLabel: t('tab_rides') }} />
-      <Tab.Screen name="OffersTab" component={DummyScreen} options={{ tabBarLabel: t('tab_anchor') }} />
+      <Tab.Screen name="OffersTab" component={DummyScreen} options={{ tabBarLabel: t('tab_offers') }} />
       <Tab.Screen name="ProfileTab" component={ProfileScreen} options={{ tabBarLabel: t('tab_profile') }} />
     </Tab.Navigator>
   );

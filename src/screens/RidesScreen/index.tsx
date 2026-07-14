@@ -35,8 +35,8 @@ export function RidesScreen({ navigation }: any) {
         </View>
         <View style={styles.avatarContainer}>
           <Image 
-            source={{ uri: 'https://img.icons8.com/color/96/user-male-circle--v1.png' }}
-            style={styles.avatarImage}
+            source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/user.png' }}
+            style={[styles.avatarImage, { tintColor: '#1D5B9E' }]}
             resizeMode="cover"
           />
         </View>

@@ -170,5 +170,26 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     color: '#FFFFFF',
     opacity: 0.7,
+  },
+  iconImage: {
+    width: 20,
+    height: 20,
+    tintColor: '#EBB771',
+  },
+  genderIconImage: {
+    width: 20,
+    height: 20,
+    marginRight: 6,
+    tintColor: '#1E293B',
+  },
+  genderIconImageActive: {
+    tintColor: '#000000',
+  },
+  errorText: {
+    color: '#ef4444',
+    fontSize: 12,
+    marginTop: -15,
+    marginBottom: 15,
+    marginLeft: 5,
   }
 });

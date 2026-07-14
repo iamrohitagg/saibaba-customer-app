@@ -20,6 +20,7 @@ export function ProfileSetupScreen({ navigation }: any) {
     setFullName,
     email,
     setEmail,
+    emailError,
     gender,
     setGender,
     handleSave,
@@ -59,7 +60,7 @@ export function ProfileSetupScreen({ navigation }: any) {
             <Text style={styles.label}>{t('full_name')}</Text>
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
-                <Text style={styles.iconText}>👤</Text>
+                <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/user.png'}} style={styles.iconImage} />
               </View>
               <TextInput
                 style={styles.input}
@@ -74,7 +75,7 @@ export function ProfileSetupScreen({ navigation }: any) {
             <Text style={styles.label}>{t('email_address')}</Text>
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
-                <Text style={styles.iconText}>✉️</Text>
+                <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/new-post.png'}} style={styles.iconImage} />
               </View>
               <TextInput
                 style={styles.input}
@@ -86,6 +87,7 @@ export function ProfileSetupScreen({ navigation }: any) {
                 autoCapitalize="none"
               />
             </View>
+            {!!emailError && <Text style={styles.errorText}>{emailError}</Text>}
 
             {/* Gender Selection */}
             <Text style={styles.label}>{t('choose_gender')}</Text>
@@ -96,12 +98,12 @@ export function ProfileSetupScreen({ navigation }: any) {
               >
                 {gender === 'male' ? (
                   <LinearGradient colors={['#EBB771', '#D4924A']} style={styles.genderGradient}>
-                    <Text style={styles.genderIcon}>🧍‍♂️</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/male.png'}} style={[styles.genderIconImage, styles.genderIconImageActive]} />
                     <Text style={[styles.genderText, styles.genderTextActive]}>{t('gender_male')}</Text>
                   </LinearGradient>
                 ) : (
                   <View style={styles.genderInner}>
-                    <Text style={styles.genderIcon}>🧍‍♂️</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/male.png'}} style={styles.genderIconImage} />
                     <Text style={styles.genderText}>{t('gender_male')}</Text>
                   </View>
                 )}
@@ -113,12 +115,12 @@ export function ProfileSetupScreen({ navigation }: any) {
               >
                 {gender === 'female' ? (
                   <LinearGradient colors={['#EBB771', '#D4924A']} style={styles.genderGradient}>
-                    <Text style={styles.genderIcon}>🧍‍♀️</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/female.png'}} style={[styles.genderIconImage, styles.genderIconImageActive]} />
                     <Text style={[styles.genderText, styles.genderTextActive]}>{t('gender_female')}</Text>
                   </LinearGradient>
                 ) : (
                   <View style={styles.genderInner}>
-                    <Text style={styles.genderIcon}>🧍‍♀️</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/female.png'}} style={styles.genderIconImage} />
                     <Text style={styles.genderText}>{t('gender_female')}</Text>
                   </View>
                 )}
@@ -130,12 +132,12 @@ export function ProfileSetupScreen({ navigation }: any) {
               >
                 {gender === 'other' ? (
                   <LinearGradient colors={['#EBB771', '#D4924A']} style={styles.genderGradient}>
-                    <Text style={styles.genderIcon}>💬</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/gender-neutral-user.png'}} style={[styles.genderIconImage, styles.genderIconImageActive]} />
                     <Text style={[styles.genderText, styles.genderTextActive]}>{t('gender_other')}</Text>
                   </LinearGradient>
                 ) : (
                   <View style={styles.genderInner}>
-                    <Text style={styles.genderIcon}>💬</Text>
+                    <Image source={{uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/gender-neutral-user.png'}} style={styles.genderIconImage} />
                     <Text style={styles.genderText}>{t('gender_other')}</Text>
                   </View>
                 )}

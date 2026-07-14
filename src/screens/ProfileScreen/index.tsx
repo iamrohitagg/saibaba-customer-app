@@ -4,9 +4,9 @@ import {
   Text, 
   TouchableOpacity, 
   Image, 
-  SafeAreaView,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProfileScreen } from './useProfileScreen';
 import { styles } from './styles';
 
@@ -30,10 +30,10 @@ export function ProfileScreen() {
               <Text style={styles.headerGreeting}>नमस्ते !</Text>
               <Text style={styles.headerBrand}>jaiBababjiCab!</Text>
             </View>
-            <View style={styles.headerAvatarContainer}>
+            <View style={styles.headerAvatarWrapper}>
               <Image 
-                source={{ uri: 'https://img.icons8.com/color/96/user-male-circle--v1.png' }} 
-                style={styles.headerAvatar} 
+                source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/user.png' }}
+                style={[styles.headerAvatar, { tintColor: '#1D5B9E' }]} 
               />
             </View>
           </View>
@@ -49,11 +49,11 @@ export function ProfileScreen() {
             {/* Avatar */}
             <View style={styles.avatarWrapper}>
               <Image 
-                source={{ uri: 'https://img.icons8.com/color/150/user-male-circle--v1.png' }}
-                style={styles.mainAvatar}
+                source={{ uri: 'https://img.icons8.com/ios-filled/150/1D5B9E/user.png' }}
+                style={[styles.mainAvatar, { tintColor: '#1D5B9E' }]}
               />
               <View style={styles.cameraIconContainer}>
-                <Text style={styles.cameraIcon}>📷</Text>
+                <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/camera.png' }} style={{width: 16, height: 16, tintColor: '#FFFFFF'}} />
               </View>
             </View>
 

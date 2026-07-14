@@ -10,6 +10,10 @@ export const useHomeScreen = ({ navigation }: any = {}) => {
       console.log('Proceeding with:', selectedRide);
       if (selectedRide === 'rental' && navigation) {
         navigation.navigate('RentalPackage');
+      } else if (selectedRide === 'book_now' && navigation) {
+        navigation.navigate('PassengerDetails');
+      } else if (selectedRide === 'schedule_later' && navigation) {
+        navigation.navigate('VehicleSelection');
       }
     }
   };

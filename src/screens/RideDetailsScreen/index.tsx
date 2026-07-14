@@ -33,8 +33,8 @@ export function RideDetailsScreen({ route }: any) {
         </View>
         <View style={styles.avatarContainer}>
           <Image 
-            source={{ uri: 'https://img.icons8.com/color/96/user-male-circle--v1.png' }}
-            style={styles.avatarImage}
+            source={{ uri: 'https://img.icons8.com/ios-filled/96/1D5B9E/user.png' }}
+            style={[styles.avatarImage, { tintColor: '#1D5B9E' }]}
             resizeMode="cover"
           />
         </View>
@@ -105,12 +105,12 @@ export function RideDetailsScreen({ route }: any) {
             </View>
             <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
               <Image 
-                source={{ uri: 'https://img.icons8.com/color/96/mini-cooper.png' }} 
-                style={styles.carImage} 
+                source={{ uri: 'https://img.icons8.com/ios-filled/96/1E293B/car.png' }} 
+                style={[styles.carImage, { tintColor: '#1E293B' }]} 
               />
               <Image 
-                source={{ uri: 'https://img.icons8.com/color/96/circled-user-male-skin-type-4--v1.png' }} 
-                style={styles.driverImage} 
+                source={{ uri: 'https://img.icons8.com/ios-filled/96/1E293B/user.png' }} 
+                style={[styles.driverImage, { tintColor: '#1E293B' }]} 
               />
             </View>
           </View>
@@ -144,7 +144,7 @@ export function RideDetailsScreen({ route }: any) {
               </View>
             </View>
             <View style={{justifyContent: 'center', paddingHorizontal: 10}}>
-              <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/suitcase.png' }} style={{width: 30, height: 30, opacity: 0.8}} />
+              <Image source={{ uri: 'https://img.icons8.com/ios-filled/50/1E293B/suitcase.png' }} style={{width: 30, height: 30, opacity: 0.8, tintColor: '#1E293B'}} />
             </View>
           </View>
         </View>
