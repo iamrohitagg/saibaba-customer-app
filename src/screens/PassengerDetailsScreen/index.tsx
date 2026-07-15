@@ -11,7 +11,7 @@ import { usePassengerDetailsScreen } from './usePassengerDetailsScreen';
 import { CustomDropdown } from '../../components/CustomDropdown';
 import { styles } from './styles';
 
-export function PassengerDetailsScreen() {
+export function PassengerDetailsScreen({ navigation, route }: any) {
   const { 
     t, 
     passengerName, setPassengerName,
@@ -26,7 +26,7 @@ export function PassengerDetailsScreen() {
     luggageCountOptions,
     summaryText,
     handleProceed,
-  } = usePassengerDetailsScreen();
+  } = usePassengerDetailsScreen({ navigation, route });
 
   return (
     <View style={styles.container}>

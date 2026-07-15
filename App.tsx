@@ -4,7 +4,8 @@ import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
+import { RootState } from './src/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
@@ -17,11 +18,15 @@ import { OtpScreen } from './src/screens/OtpScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { RidesScreen } from './src/screens/RidesScreen';
 import { RideDetailsScreen } from './src/screens/RideDetailsScreen';
+import { RateRideScreen } from './src/screens/RateRideScreen';
 import { RentalPackageScreen } from './src/screens/RentalPackageScreen';
 import { ProfileSetupScreen } from './src/screens/ProfileSetupScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
 import { PassengerDetailsScreen } from './src/screens/PassengerDetailsScreen';
 import { VehicleSelectionScreen } from './src/screens/VehicleSelectionScreen';
+import { LanguageSelectionScreen } from './src/screens/LanguageSelectionScreen';
+import { RentalConfirmationScreen } from './src/screens/RentalConfirmationScreen';
+import { ScheduleRideScreen } from './src/screens/ScheduleRideScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,6 +44,7 @@ function RidesStack() {
     <RidesStackNav.Navigator screenOptions={{ headerShown: false }}>
       <RidesStackNav.Screen name="RidesList" component={RidesScreen} />
       <RidesStackNav.Screen name="RideDetails" component={RideDetailsScreen} />
+      <RidesStackNav.Screen name="RateRide" component={RateRideScreen} />
     </RidesStackNav.Navigator>
   );
 }
@@ -50,6 +56,8 @@ function HomeStack() {
       <HomeStackNav.Screen name="RentalPackage" component={RentalPackageScreen} />
       <HomeStackNav.Screen name="PassengerDetails" component={PassengerDetailsScreen} />
       <HomeStackNav.Screen name="VehicleSelection" component={VehicleSelectionScreen} />
+      <HomeStackNav.Screen name="RentalConfirmation" component={RentalConfirmationScreen} />
+      <HomeStackNav.Screen name="ScheduleRide" component={ScheduleRideScreen} />
     </HomeStackNav.Navigator>
   );
 }
@@ -90,13 +98,27 @@ function MainTabs() {
   );
 }
 
+function I18nSync({ children }: { children: React.ReactNode }) {
+  const language = useSelector((state: RootState) => state.auth.language);
+  const { i18n } = useTranslation();
+
+  React.useEffect(() => {
+    if (i18n.language !== language) {
+      i18n.changeLanguage(language);
+    }
+  }, [language, i18n]);
+
+  return <>{children}</>;
+}
+
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <SafeAreaProvider>
+        <I18nSync>
+          <SafeAreaProvider>
           <NavigationContainer>
             <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
             <Stack.Navigator
@@ -106,13 +128,15 @@ function App(): React.JSX.Element {
               }}
             >
               <Stack.Screen name="Splash" component={SplashScreen} />
+              <Stack.Screen name="LanguageSelection" component={LanguageSelectionScreen} />
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Otp" component={OtpScreen} />
               <Stack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
               <Stack.Screen name="MainTabs" component={MainTabs} />
             </Stack.Navigator>
           </NavigationContainer>
-        </SafeAreaProvider>
+          </SafeAreaProvider>
+        </I18nSync>
       </PersistGate>
     </Provider>
   );

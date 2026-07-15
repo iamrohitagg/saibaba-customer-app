@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useProfileScreen } from './useProfileScreen';
+import { LanguageSelector } from '../../components/LanguageSelector';
 import { styles } from './styles';
 
 export function ProfileScreen() {
@@ -74,6 +75,12 @@ export function ProfileScreen() {
           <TouchableOpacity style={styles.saveBtn} activeOpacity={0.8}>
             <Text style={styles.saveBtnText}>{t('save_profile')}</Text>
           </TouchableOpacity>
+
+          {/* Language Selection */}
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.sectionTitle}>{t('select_language')}</Text>
+            <LanguageSelector />
+          </View>
         </View>
         
       </ScrollView>

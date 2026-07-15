@@ -10,14 +10,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useRentalPackageScreen } from './useRentalPackageScreen';
 import { styles } from './styles';
 
-export function RentalPackageScreen() {
+export function RentalPackageScreen({ navigation, route }: any) {
   const { 
     t, 
     packages,
     selectedId,
     setSelectedId,
     handleProceed
-  } = useRentalPackageScreen();
+  } = useRentalPackageScreen({ navigation, route });
 
   return (
     <View style={styles.container}>

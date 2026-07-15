@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const usePassengerDetailsScreen = ({ navigation }: any = {}) => {
+export const usePassengerDetailsScreen = ({ navigation, route }: any = {}) => {
   const { t } = useTranslation();
+  const flow = route?.params?.flow;
   
   const [passengerName, setPassengerName] = useState('Rahul Singh / राहुल सिंह');
   const [adultsCount, setAdultsCount] = useState('2 Adults / 2 वयस्क');
@@ -53,7 +54,11 @@ export const usePassengerDetailsScreen = ({ navigation }: any = {}) => {
   }, [adultsCount, childrenCount, luggageCount, luggageType]);
 
   const handleProceed = () => {
-    console.log('Proceeding with passenger details');
+    if (flow === 'schedule_later') {
+      navigation.navigate('ScheduleRide');
+    } else {
+      navigation.navigate('RentalConfirmation');
+    }
   };
 
   return {

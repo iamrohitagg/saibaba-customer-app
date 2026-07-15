@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const useVehicleSelectionScreen = ({ navigation }: any = {}) => {
+export const useVehicleSelectionScreen = ({ navigation, route }: any = {}) => {
   const { t } = useTranslation();
+  const flow = route?.params?.flow;
   
   const cars = [
     {
@@ -35,7 +36,9 @@ export const useVehicleSelectionScreen = ({ navigation }: any = {}) => {
   const buttonCarName = selectedCar ? selectedCar.name.split(' / ')[0] : 'Mini';
 
   const handleProceed = () => {
-    console.log('Proceeding with vehicle:', selectedCar);
+    if (navigation) {
+      navigation.navigate('PassengerDetails', { flow });
+    }
   };
 
   return {

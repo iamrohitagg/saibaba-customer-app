@@ -46,6 +46,10 @@ export const useRidesScreen = ({ navigation }: any) => {
     navigation.navigate('RideDetails', { rideId: id });
   };
 
+  const handleRateDriver = (id: string) => {
+    navigation.navigate('RateRide', { rideId: id });
+  };
+
   const handleViewAll = () => {
     console.log('View all rides');
   };
@@ -56,6 +60,7 @@ export const useRidesScreen = ({ navigation }: any) => {
     summary,
     handleBookAgain,
     handleCardPress,
+    handleRateDriver,
     handleViewAll,
   };
 };

@@ -17,6 +17,7 @@ export function RidesScreen({ navigation }: any) {
     summary, 
     handleBookAgain, 
     handleCardPress,
+    handleRateDriver,
     handleViewAll 
   } = useRidesScreen({ navigation });
 
@@ -75,13 +76,22 @@ export function RidesScreen({ navigation }: any) {
 
             <View style={styles.driverRow}>
               <Text style={styles.driverText}>Driver: {ride.driver}</Text>
-              <TouchableOpacity 
-                style={styles.bookAgainBtn}
-                onPress={() => handleBookAgain(ride.id)}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.bookAgainText}>{t('book_again')}</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'row', gap: 8 }}>
+                <TouchableOpacity 
+                  style={[styles.bookAgainBtn, { backgroundColor: '#37497A', marginRight: 5 }]}
+                  onPress={() => handleRateDriver(ride.id)}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.bookAgainText}>{t('rate_driver')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.bookAgainBtn}
+                  onPress={() => handleBookAgain(ride.id)}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.bookAgainText}>{t('book_again')}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
           </TouchableOpacity>

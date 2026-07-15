@@ -9,11 +9,11 @@ export const useHomeScreen = ({ navigation }: any = {}) => {
     if (selectedRide) {
       console.log('Proceeding with:', selectedRide);
       if (selectedRide === 'rental' && navigation) {
-        navigation.navigate('RentalPackage');
+        navigation.navigate('RentalPackage', { flow: 'rental' });
       } else if (selectedRide === 'book_now' && navigation) {
-        navigation.navigate('PassengerDetails');
+        navigation.navigate('PassengerDetails', { flow: 'book_now' });
       } else if (selectedRide === 'schedule_later' && navigation) {
-        navigation.navigate('VehicleSelection');
+        navigation.navigate('VehicleSelection', { flow: 'schedule_later' });
       }
     }
   };

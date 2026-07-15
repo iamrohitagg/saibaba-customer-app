@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const useRentalPackageScreen = () => {
+export const useRentalPackageScreen = ({ navigation, route }: any = {}) => {
   const { t } = useTranslation();
+  const flow = route?.params?.flow;
 
   const packages = [
     {
@@ -28,7 +29,9 @@ export const useRentalPackageScreen = () => {
   const [selectedId, setSelectedId] = useState<string>('2h_20km');
 
   const handleProceed = () => {
-    console.log('Proceeding with rental package:', selectedId);
+    if (navigation) {
+      navigation.navigate('VehicleSelection', { flow });
+    }
   };
 
   return {

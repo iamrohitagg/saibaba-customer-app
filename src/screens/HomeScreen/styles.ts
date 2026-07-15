@@ -55,8 +55,7 @@ export const styles = StyleSheet.create({
     marginTop: -20, // To tuck under the rounded header
   },
   mapPlaceholder: {
-    width: '100%',
-    height: '100%',
+    ...StyleSheet.absoluteFill
   },
   markerContainer: {
     position: 'absolute',

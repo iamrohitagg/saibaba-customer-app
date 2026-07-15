@@ -10,7 +10,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useVehicleSelectionScreen } from './useVehicleSelectionScreen';
 import { styles } from './styles';
 
-export function VehicleSelectionScreen() {
+export function VehicleSelectionScreen({ navigation, route }: any) {
   const { 
     t, 
     cars,
@@ -18,7 +18,7 @@ export function VehicleSelectionScreen() {
     setSelectedCarId,
     buttonCarName,
     handleProceed,
-  } = useVehicleSelectionScreen();
+  } = useVehicleSelectionScreen({ navigation, route });
 
   return (
     <View style={styles.container}>
