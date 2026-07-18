@@ -27,7 +27,13 @@ import { VehicleSelectionScreen } from './src/screens/VehicleSelectionScreen';
 import { LanguageSelectionScreen } from './src/screens/LanguageSelectionScreen';
 import { RentalConfirmationScreen } from './src/screens/RentalConfirmationScreen';
 import { ScheduleRideScreen } from './src/screens/ScheduleRideScreen';
-
+import { ScheduleConfirmationScreen } from './src/screens/ScheduleConfirmationScreen';
+import { LocationSelectionScreen } from './src/screens/LocationSelectionScreen';
+import { AddressSearchScreen } from './src/screens/AddressSearchScreen';
+import { RideTypeSelectionScreen } from './src/screens/RideTypeSelectionScreen';
+import { SearchingDriverScreen } from './src/screens/SearchingDriverScreen';
+import { LiveRideTrackingScreen } from './src/screens/LiveRideTrackingScreen';
+import { OffersScreen } from './src/screens/OffersScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const RidesStackNav = createNativeStackNavigator();
@@ -58,6 +64,12 @@ function HomeStack() {
       <HomeStackNav.Screen name="VehicleSelection" component={VehicleSelectionScreen} />
       <HomeStackNav.Screen name="RentalConfirmation" component={RentalConfirmationScreen} />
       <HomeStackNav.Screen name="ScheduleRide" component={ScheduleRideScreen} />
+      <HomeStackNav.Screen name="ScheduleConfirmation" component={ScheduleConfirmationScreen} />
+      <HomeStackNav.Screen name="LocationSelection" component={LocationSelectionScreen} />
+      <HomeStackNav.Screen name="AddressSearch" component={AddressSearchScreen} />
+      <HomeStackNav.Screen name="RideTypeSelection" component={RideTypeSelectionScreen} />
+      <HomeStackNav.Screen name="SearchingDriver" component={SearchingDriverScreen} />
+      <HomeStackNav.Screen name="LiveRideTracking" component={LiveRideTrackingScreen} />
     </HomeStackNav.Navigator>
   );
 }
@@ -92,7 +104,7 @@ function MainTabs() {
     >
       <Tab.Screen name="HomeTab" component={HomeStack} options={{ tabBarLabel: t('tab_home') }} />
       <Tab.Screen name="TripsTab" component={RidesStack} options={{ tabBarLabel: t('tab_rides') }} />
-      <Tab.Screen name="OffersTab" component={DummyScreen} options={{ tabBarLabel: t('tab_offers') }} />
+      <Tab.Screen name="OffersTab" component={OffersScreen} options={{ tabBarLabel: t('tab_offers') }} />
       <Tab.Screen name="ProfileTab" component={ProfileScreen} options={{ tabBarLabel: t('tab_profile') }} />
     </Tab.Navigator>
   );

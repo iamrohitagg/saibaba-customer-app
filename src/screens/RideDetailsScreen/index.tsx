@@ -8,6 +8,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LinearGradient from "react-native-linear-gradient";
 import MapView, {
   Marker,
@@ -19,37 +20,38 @@ import { useRideDetailsScreen } from "./useRideDetailsScreen";
 import { styles } from "./styles";
 
 export function RideDetailsScreen({ route }: any) {
+  const insets = useSafeAreaInsets();
   const { t, rideData, handleBookAgain, handleDownloadInvoice } =
     useRideDetailsScreen({ route });
 
   return (
     <View style={styles.container}>
-      {/* Header Gradient */}
-      <LinearGradient
-        colors={["#FCAE75", "#AEE1F9"]}
-        style={styles.headerGradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
-        <View style={styles.headerTextContainer}>
-          <Text style={styles.greetingText}>नमस्ते. 🙏</Text>
-          <Text style={styles.brandText}>jaiBababjiCab!</Text>
-        </View>
-        <View style={styles.avatarContainer}>
-          <Image
-            source={{
-              uri: "https://img.icons8.com/ios-filled/96/1D5B9E/user.png",
-            }}
-            style={[styles.avatarImage, { tintColor: "#1D5B9E" }]}
-            resizeMode="cover"
-          />
-        </View>
-      </LinearGradient>
-
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {/* Header Gradient */}
+        <LinearGradient
+          colors={["#FCAE75", "#AEE1F9"]}
+          style={[styles.headerGradient, { paddingTop: Math.max(insets.top, 20), marginHorizontal: -15 }]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.greetingText}>नमस्ते. 🙏</Text>
+            <Text style={styles.brandText}>jaiBababjiCab!</Text>
+          </View>
+          <View style={styles.avatarContainer}>
+            <Image
+              source={{
+                uri: "https://img.icons8.com/ios-filled/96/1D5B9E/user.png",
+              }}
+              style={[styles.avatarImage, { tintColor: "#1D5B9E" }]}
+              resizeMode="cover"
+            />
+          </View>
+        </LinearGradient>
+
         {/* Top Section */}
         <View style={styles.topCard}>
           <View style={styles.titleRow}>
@@ -64,13 +66,14 @@ export function RideDetailsScreen({ route }: any) {
           </View>
 
           {/* Map View */}
-          <View style={[styles.mapImage, { overflow: "hidden" }]}>
+          <View style={[styles.mapImage, { overflow: "hidden", position: "relative" }]}>
             <MapView
-              style={StyleSheet.absoluteFill}
+              style={{ width: '100%', height: '100%', position: 'absolute' }}
               provider={
                 Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
               }
               userInterfaceStyle="light"
+              liteMode={true}
               initialRegion={{
                 latitude: 28.6189,
                 longitude: 77.214,

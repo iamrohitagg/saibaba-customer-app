@@ -6,11 +6,13 @@ import {
   TouchableOpacity, 
   Image 
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import { useRidesScreen } from './useRidesScreen';
 import { styles } from './styles';
 
 export function RidesScreen({ navigation }: any) {
+  const insets = useSafeAreaInsets();
   const { 
     t, 
     rides, 
@@ -26,7 +28,7 @@ export function RidesScreen({ navigation }: any) {
       {/* Header Gradient */}
       <LinearGradient
         colors={['#FCAE75', '#AEE1F9']}
-        style={styles.headerGradient}
+        style={[styles.headerGradient, { paddingTop: Math.max(insets.top, 20) }]}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
       >

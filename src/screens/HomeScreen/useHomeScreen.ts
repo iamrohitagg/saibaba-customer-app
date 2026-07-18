@@ -11,7 +11,7 @@ export const useHomeScreen = ({ navigation }: any = {}) => {
       if (selectedRide === 'rental' && navigation) {
         navigation.navigate('RentalPackage', { flow: 'rental' });
       } else if (selectedRide === 'book_now' && navigation) {
-        navigation.navigate('PassengerDetails', { flow: 'book_now' });
+        navigation.navigate('LocationSelection', { flow: 'book_now' });
       } else if (selectedRide === 'schedule_later' && navigation) {
         navigation.navigate('VehicleSelection', { flow: 'schedule_later' });
       }

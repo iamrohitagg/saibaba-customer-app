@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     height: 30,
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
     paddingTop: 100, // Account for absolute header
     paddingHorizontal: 20,
   },

@@ -4,13 +4,17 @@ import {
   Text, 
   ScrollView, 
   TouchableOpacity, 
-  Image 
+  Image,
+  Platform
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
+import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useVehicleSelectionScreen } from './useVehicleSelectionScreen';
 import { styles } from './styles';
 
 export function VehicleSelectionScreen({ navigation, route }: any) {
+  const insets = useSafeAreaInsets();
   const { 
     t, 
     cars,
@@ -24,8 +28,8 @@ export function VehicleSelectionScreen({ navigation, route }: any) {
     <View style={styles.container}>
       {/* Header Gradient */}
       <LinearGradient
-        colors={['#EAD0A8', '#AEE1F9']}
-        style={styles.headerGradient}
+        colors={['#FCAE75', '#AEE1F9']}
+        style={[styles.headerGradient, { paddingTop: Math.max(insets.top, 20) }]}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
       >
@@ -44,6 +48,39 @@ export function VehicleSelectionScreen({ navigation, route }: any) {
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         
+        {/* Map Header Area */}
+        <View style={styles.mapCardContainer}>
+          <View style={styles.mapPlaceholder}>
+            <MapView
+              style={{ width: '100%', height: '100%', position: 'absolute' }}
+              provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
+              initialRegion={{
+                latitude: 25.8833, 
+                longitude: 86.6000,
+                latitudeDelta: 0.0122,
+                longitudeDelta: 0.0121,
+              }}
+              scrollEnabled={false}
+              pitchEnabled={false}
+              rotateEnabled={false}
+              zoomEnabled={false}
+              userInterfaceStyle="light"
+              liteMode={true}
+            >
+              <Marker coordinate={{ latitude: 25.8833, longitude: 86.6000 }}>
+                <View style={styles.pinSmall} />
+              </Marker>
+            </MapView>
+          </View>
+          
+          <View style={styles.addressBox}>
+            <View style={styles.addressLine}>
+              <View style={styles.addressDotTop} />
+              <Text style={styles.addressText} numberOfLines={1}>{t('current_location', 'Current Location')}</Text>
+            </View>
+          </View>
+        </View>
+
         <View style={styles.topTextContainer}>
           <Text style={styles.screenTitle}>{t('select_ride_type_rental', 'Select Ride Type (Rental) / रेंटल के लिए गाड़ी चुनें')}</Text>
           <Text style={styles.packageText}>{t('package_selected', 'Package: 2 घंटे / 20 किमी (2 Hours / 20 km)')}</Text>

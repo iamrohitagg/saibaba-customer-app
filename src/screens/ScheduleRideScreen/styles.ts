@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     height: 30,
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
     paddingTop: 100, // Account for absolute header
     paddingHorizontal: 20,
   },
@@ -128,5 +128,55 @@ export const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 18,
     fontWeight: '500',
-  }
+  },
+  mapCardContainer: {
+    height: 120,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 20,
+    position: 'relative',
+    backgroundColor: '#EAEAEA',
+  },
+  mapPlaceholder: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
+  },
+  addressBox: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 3,
+    width: '60%',
+  },
+  addressLine: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  addressDotTop: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#1D5B9E',
+    marginRight: 8,
+  },
+  addressText: {
+    fontSize: 14,
+    color: '#1E293B',
+    flex: 1,
+  },
+  pinSmall: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#1D5B9E',
+    borderWidth: 2,
+    borderColor: '#FFF',
+  },
 });

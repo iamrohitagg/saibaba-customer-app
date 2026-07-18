@@ -19,8 +19,7 @@ export const useScheduleRideScreen = ({ navigation }: any = {}) => {
 
   const handleConfirm = () => {
     console.log('Confirmed Schedule:', { date, time, bookForGuest, guestName, guestPhone, selectedPhoneOpt });
-    // Go back to HomeMain or pop to top
-    navigation.popToTop();
+    navigation.navigate('ScheduleConfirmation');
   };
 
   return {

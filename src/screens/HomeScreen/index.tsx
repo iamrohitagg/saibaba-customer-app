@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LinearGradient from "react-native-linear-gradient";
 import MapView, {
   Marker,
@@ -10,16 +11,19 @@ import { useHomeScreen } from "./useHomeScreen";
 import { styles } from "./styles";
 
 export function HomeScreen({ navigation }: any) {
+  const insets = useSafeAreaInsets();
   const { t, selectedRide, setSelectedRide, handleProceed } = useHomeScreen({
     navigation,
   });
 
   return (
     <View style={styles.container}>
-      {/* Header Gradient */}
       <LinearGradient
         colors={["#FCAE75", "#AEE1F9"]}
-        style={styles.headerGradient}
+        style={[
+          styles.headerGradient,
+          { paddingTop: Math.max(insets.top, 20) },
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
